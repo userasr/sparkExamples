@@ -1,0 +1,17 @@
+import java.util.Properties
+import org.apache.spark.sql.SaveMode
+val url = "jdbc:mysql://MYDB.URL:3306/DB"
+val properties = new Properties()
+properties.put("user", "USERNAME")
+properties.put("password", "PASSWORD")
+Class.forName("org.mariadb.jdbc.Driver")
+val tableName = "TABLENAME"
+spark.read.option("header",true).csv("FILE.csv")
+res3.withColumn("COLNAME", lit(null: String))
+res4.withColumn("COLNAME",when(col("COL1") !== "null","VAL1").otherwise(when(col("COL2") === "null", "null").otherwise(when(col("COL3") === "null", "VAL2").otherwise("VAL3"))))
+res5.select("COL1","COL2","COL3","COL4").show()
+res5.withColumn("COL1", col("COL1").cast("timestamp"))
+res6.withColumn("COL2", col("COL2").cast("date"))
+res7.withColumn("COL3", col("COL3").cast("double"))
+res8.withColumn("COL4", col("COL4").cast("float"))
+res9.write.mode(SaveMode.Append).jdbc(url,tableName,properties)
